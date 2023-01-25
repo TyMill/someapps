@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 # load dataframe
 df = pd.read_csv("some_sth.csv",sep=";")
-
+st.dataframe(df)
 # define threshold values
 thresholds = {0.2: 0.95, 0.4: 0.98, 0.6: 1.03, 0.8: 1.076}
 
