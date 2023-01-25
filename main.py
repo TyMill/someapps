@@ -31,7 +31,7 @@ if calendar_value:
 
 # filter dataframe by date and time range
 df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
-print(df_filtered)
+st.dataframe(df_filtered)
 # check if Not aval percentage is greater than a threshold
 if df_filtered['not aval'].sum()/df_filtered.shape[0] > threshold:
     st.warning("The percentage of 'Not aval' for the selected date is greater than the threshold.")
