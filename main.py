@@ -24,9 +24,9 @@ if calendar_value:
     end_time = datetime.strptime(st.time_input("Select end time (8 to 117)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
     current_time = start_time
     values = []
-    while current_time <= end_time:
-        values.append(st.checkbox(current_time.strftime("%I:%M %p")))
-        current_time += timedelta(minutes=30)
+    #while current_time <= end_time:
+        #values.append(st.checkbox(current_time.strftime("%I:%M %p")))
+        #current_time += timedelta(minutes=30)
     #selected_times = [current_time.strftime("%I:%M %p") for current_time, value in zip(time_range, values) if value]
 
 # filter dataframe by date and time range
