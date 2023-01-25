@@ -33,10 +33,10 @@ if calendar_value:
 df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
 
 # check if Not aval percentage is greater than a threshold
-if df_filtered['Not aval'].sum()/df_filtered.shape[0] > threshold:
+if df_filtered['not aval'].sum()/df_filtered.shape[0] > threshold:
     st.warning("The percentage of 'Not aval' for the selected date is greater than the threshold.")
     for threshold, multiplier in thresholds.items():
-        if df_filtered['Not aval'].sum()/df_filtered.shape[0] > threshold:
+        if df_filtered['not aval'].sum()/df_filtered.shape[0] > threshold:
             df_filtered.loc[:, 'value'] = df_filtered['value'] * multiplier
             break
 else:
