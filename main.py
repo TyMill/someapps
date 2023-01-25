@@ -15,7 +15,10 @@ multipliers = {"8:00": 1.05, "8:30": 1.04, "9:00": 1.03, "9:30": 1.02, "10:00": 
 time_range = ["8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
 # create calendar
 
-calendar_value = st.date_input("Select a date", value=datetime.now())
+#calendar_value = st.date_input("Select a date", value=datetime.now())
+calendar_value = datetime.now()
+st.date_input("Select a date", calendar_value)
+
 
 if calendar_value:
     # create time range picker
@@ -27,7 +30,7 @@ if calendar_value:
         values.append(st.checkbox(current_time.strftime("%H:%M")))
         current_time += timedelta(minutes=30)
     selected_times = [current_time.strftime("%H:%M") for current_time, value in zip(time_range, values) if value]
-st.show(calendar_value)
+
 # filter dataframe by date and time range
 df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
 st.dataframe(df_filtered)
