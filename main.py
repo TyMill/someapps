@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="My Calendar App", page_icon=":calendar:", layout="wide")
 
 # load dataframe
 df = pd.read_csv("some_sth.csv")
