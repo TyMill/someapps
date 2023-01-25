@@ -1,0 +1,48 @@
+import pandas as pd
+import streamlit as st
+from datetime import datetime, timedelta
+
+st.set_page_config(page_title="My Calendar App", page_icon=":calendar:", layout="wide")
+
+# Set the sidebar background color to dark blue
+st.beta_color_picker("Sidebar color", "sidebar", "#00008b")
+
+# Create a calendar widget
+start_date = "2023-01-01"
+end_date = "2023-03-01"
+calendar_value = st.calendar_widget("Select a date", start_date, end_date)
+
+# Show the selected date
+st.write("You selected:", calendar_value)
+
+df = pd.read_csv("your_data.csv")
+
+# create a table with checkboxes in 30 minutes intervals
+interval = 30
+time_range = ["8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm"]
+values = [st.checkbox(time) for time in time_range]
+st.table(values)
+
+# create input field and submit button for the user to enter task name
+task_name = st.text_input("Enter task name:")
+
+if st.button("Add task"):
+    st.write("Task '{}' added at {}".format(task_name, [time_range[i] for i in range(len(values)) if values[i]._value]))
+
+if calendar_value:
+    start_time = datetime.strptime(st.time_input("Select start time (8am to 5pm)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    end_time = datetime.strptime(st.time_input("Select end time (8am to 5pm)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    current_time = start_time
+    values = []
+    while current_time <= end_time:
+        values.append(st.checkbox(current_time.strftime("%I:%M %p")))
+        current_time += timedelta(minutes=interval)
+    st.table(values)
+    if any(value._value for value in values):
+        task_name = st.text_input("Enter task name:")
+        if st.button("Add task"):
+            selected_times = [current_time.strftime("%I:%M %p") for current_time in range(start_time, end_time, timedelta(minutes=interval)) if values[i]._value]
+            # filter dataframe based on selected date and time
+            df['date'] = pd.to_datetime(df['date'])
+            df_filtered = df[(df['date'] == calendar_value) & df['time'].isin(selected_times)]
+            st.dataframe(df_filtered)
