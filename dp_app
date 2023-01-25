@@ -46,3 +46,13 @@ if calendar_value:
             df['date'] = pd.to_datetime(df['date'])
             df_filtered = df[(df['date'] == calendar_value) & df['time'].isin(selected_times)]
             st.dataframe(df_filtered)
+            
+            thresholds = {0.2: 0.95, 0.4: 0.98, 0.6: 1.03, 0.8: 1.076}
+            for threshold, multiplier in thresholds.items():
+                if df_filtered['Not aval'].sum()/df_filtered.shape[0] > threshold:
+                    st.warning(f"The percentage of 'Not aval' for the selected date is greater than {threshold}.")
+                    df_filtered.loc[:, 'value'] = df_filtered['value'] * multiplier
+                    st.dataframe(df_filtered)
+                     break
+        else:
+                st.dataframe(df_filtered)
