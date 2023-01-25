@@ -3,8 +3,13 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 
+st.set_page_config(page_title="My Calendar App", page_icon=":calendar:", layout="wide")
+
+# Set the sidebar background color to dark blue
+st.beta_color_picker("Sidebar color", "sidebar", "#00008b")
+
 # load dataframe
-df = pd.read_csv("your_data.csv")
+df = pd.read_csv("some_sth.csv")
 
 # define threshold values
 thresholds = {0.2: 0.95, 0.4: 0.98, 0.6: 1.03, 0.8: 1.076}
