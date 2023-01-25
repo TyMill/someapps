@@ -13,6 +13,7 @@ thresholds = {0.2: 0.95, 0.4: 0.98, 0.6: 1.03, 0.8: 1.076}
 # define multipliers based on time range
 multipliers = {"8:00am": 1.05, "8:30am": 1.04, "9:00am": 1.03, "9:30am": 1.02, "10:00am": 1.01, "10:30am": 1, "11:00am": 1, "11:30am": 1, "12:00pm": 1.01, "12:30pm": 1.02, "1:00pm": 1.03, "1:30pm": 1.04, "2:00pm": 1.05, "2:30pm": 1.06, "3:00pm": 1.07, "3:30pm": 1.08, "4:00pm": 1.09, "4:30pm": 1.1, "5:00pm": 1.1}
 
+time_range = ["8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm"]
 # create calendar
 st.set_page_config(page_title="Day Planner", page_icon=":calendar:", layout="wide")
 calendar_value = st.date_input("Select a date", value=datetime.now())
