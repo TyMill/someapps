@@ -22,22 +22,22 @@ st.date_input("Select a date", calendar_value)
 
 #if calendar_value:
     # create time range picker
-#    st.time_input("Select start time (8 to 17)")
-#    start_time = datetime.strptime(datetime.strptime("08:00", "%H:%M").time().strftime("%H:%M"), "%H:%M")
-  #  #start_time = datetime.strptime(st.time_input("Select start time (8 to 17)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
- #   st.time_input("Select end time (8 to 17)")
- #   end_time = datetime.strptime(datetime.strptime("17:00", "%H:%M").time().strftime("%H:%M"), "%H:%M")
-  #  #end_time = datetime.strptime(st.time_input("Select end time (8 to 17)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    st.time_input("Select start time (8 to 17)")
+    start_time = datetime.strptime(datetime.strptime("08:00", "%H:%M").time().strftime("%H:%M"), "%H:%M")
+    #start_time = datetime.strptime(st.time_input("Select start time (8 to 17)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    st.time_input("Select end time (8 to 17)")
+    end_time = datetime.strptime(datetime.strptime("17:00", "%H:%M").time().strftime("%H:%M"), "%H:%M")
+    #end_time = datetime.strptime(st.time_input("Select end time (8 to 17)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
     
- #   current_time = start_time
- #   values = []
- #   while current_time <= end_time:
- #       values.append(st.checkbox(current_time.strftime("%H:%M")))
- #       current_time += timedelta(minutes=30)
- #   selected_times = [current_time.strftime("%H:%M") for current_time, value in zip(time_range, values) if value]
+    current_time = start_time
+    values = []
+    while current_time <= end_time:
+        values.append(st.checkbox(current_time.strftime("%H:%M")))
+        current_time += timedelta(minutes=30)
+    selected_times = [current_time.strftime("%H:%M") for current_time, value in zip(time_range, values) if value]
 
 # filter dataframe by date and time range
-df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M")) #for time in values]))]
+df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
 st.dataframe(df_filtered)
 # check if Not aval percentage is greater than a threshold
 if df_filtered['not aval'].sum()/df_filtered.shape[0] > threshold:
