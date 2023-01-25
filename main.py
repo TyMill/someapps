@@ -27,7 +27,7 @@ if calendar_value:
         values.append(st.checkbox(current_time.strftime("%H:%M")))
         current_time += timedelta(minutes=30)
     selected_times = [current_time.strftime("%H:%M") for current_time, value in zip(time_range, values) if value]
-
+st.table(selected_times)
 # filter dataframe by date and time range
 df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
 st.dataframe(df_filtered)
