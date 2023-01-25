@@ -11,17 +11,17 @@ df = pd.read_csv("some_sth.csv")
 thresholds = {0.2: 0.95, 0.4: 0.98, 0.6: 1.03, 0.8: 1.076}
 
 # define multipliers based on time range
-multipliers = {"8:00am": 1.05, "8:30am": 1.04, "9:00am": 1.03, "9:30am": 1.02, "10:00am": 1.01, "10:30am": 1, "11:00am": 1, "11:30am": 1, "12:00pm": 1.01, "12:30pm": 1.02, "1:00pm": 1.03, "1:30pm": 1.04, "2:00pm": 1.05, "2:30pm": 1.06, "3:00pm": 1.07, "3:30pm": 1.08, "4:00pm": 1.09, "4:30pm": 1.1, "5:00pm": 1.1}
+multipliers = {"8:00": 1.05, "8:30": 1.04, "9:00": 1.03, "9:30": 1.02, "10:00": 1.01, "10:30": 1, "11:00": 1, "11:30": 1, "12:00": 1.01, "12:30": 1.02, "13:00": 1.03, "13:30": 1.04, "14:00": 1.05, "14:30": 1.06, "15:00": 1.07, "15:30": 1.08, "16:00pm": 1.09, "16:30": 1.1, "17:00": 1.1}
 
-time_range = ["8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm"]
+time_range = ["8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
 # create calendar
 st.set_page_config(page_title="Day Planner", page_icon=":calendar:", layout="wide")
 calendar_value = st.date_input("Select a date", value=datetime.now())
 
 if calendar_value:
     # create time range picker
-    start_time = datetime.strptime(st.time_input("Select start time (8am to 5pm)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
-    end_time = datetime.strptime(st.time_input("Select end time (8am to 5pm)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    start_time = datetime.strptime(st.time_input("Select start time (8 to 17)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
+    end_time = datetime.strptime(st.time_input("Select end time (8 to 117)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
     current_time = start_time
     values = []
     while current_time <= end_time:
