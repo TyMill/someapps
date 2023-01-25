@@ -26,7 +26,7 @@ if calendar_value:
     start_time = datetime.strptime("08:00", "%H:%M").time().strftime("%H:%M")
     #start_time = datetime.strptime(st.time_input("Select start time (8 to 17)", datetime.strptime("08:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
     st.time_input("Select end time (8 to 17)")
-    end_time = datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M")
+    end_time = datetime.strptime("17:00", "%H:%M").time().strftime("%H:%M")
     #end_time = datetime.strptime(st.time_input("Select end time (8 to 17)", datetime.strptime("17:00", "%H:%M").time()).strftime("%H:%M"), "%H:%M")
     
     current_time = start_time
