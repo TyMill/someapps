@@ -20,7 +20,7 @@ calendar_value = datetime.now()
 st.date_input("Select a date", calendar_value)
 
 
-#if calendar_value:
+if calendar_value:
     # create time range picker
     st.time_input("Select start time (8 to 17)")
     start_time = datetime.strptime(datetime.strptime("08:00", "%H:%M").time().strftime("%H:%M"), "%H:%M")
