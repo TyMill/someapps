@@ -25,7 +25,8 @@ if calendar_value:
     current_time = start_time
     values = []
     #while current_time <= end_time:
-        #values.append(st.checkbox(current_time.strftime("%I:%M %p")))
+    
+    values.append(st.checkbox(current_time.strftime("%I:%M %p")))
         #current_time += timedelta(minutes=30)
     #selected_times = [current_time.strftime("%I:%M %p") for current_time, value in zip(time_range, values) if value]
 
