@@ -32,9 +32,9 @@ st.date_input("Select a date", calendar_value)
     current_time = start_time
     values = []
     while current_time <= end_time:
-        values.append(st.checkbox(current_time.strftime("%H:%M")))
+        values.append(st.checkbox(current_time.strftime("%I:%M %p")))
         current_time += timedelta(minutes=30)
-    selected_times = [current_time.strftime("%H:%M") for current_time, value in zip(time_range, values) if value]
+    selected_times = [current_time.strftime("%I:%M %p") for current_time, value in zip(time_range, values) if value]
 
 # filter dataframe by date and time range
 df_filtered = df[(df["date"] == calendar_value.strftime("%Y-%m-%d")) & (df["time"].isin([time.strftime("%H:%M") for time in values]))]
