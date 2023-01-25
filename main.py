@@ -5,9 +5,6 @@ from datetime import datetime, timedelta
 
 st.set_page_config(page_title="My Calendar App", page_icon=":calendar:", layout="wide")
 
-# Set the sidebar background color to dark blue
-st.beta_color_picker("Sidebar color", "sidebar", "#00008b")
-
 # load dataframe
 df = pd.read_csv("some_sth.csv")
 
